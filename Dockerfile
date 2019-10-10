@@ -1,9 +1,12 @@
-FROM golang:1.8
-WORKDIR /go/src/github.com/Calvin097/pmb-grpc-server
+FROM golang:1.13.1
+WORKDIR /go/src/github.com/Calvinn097/pmb-grpc-server
 COPY . .
-RUN pwd
 RUN ls
 RUN go get -d -v ./...
 RUN go install -v ./...
 
-CMD ["account_server"]
+RUN apt-get update
+RUN apt-get install -y supervisor
+COPY ./docker/supervisord.conf /etc/supervisord.conf
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]

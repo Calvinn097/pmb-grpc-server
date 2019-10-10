@@ -13,7 +13,7 @@ import (
 
 const (
 	port             = ":50051"
-	database_setting = "root:root@tcp(127.0.0.1:3318)/user_db"
+	database_setting = "root:root@tcp(user_mysql:3306)/user_db"
 )
 
 type accountServer struct {
